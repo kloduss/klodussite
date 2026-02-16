@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Технології GPU</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-glow">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <header>
+        <div class="nav-glass">
+            <div class="logo">GPU<span>HUB</span></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="history.html">Історія</a></li>
+                    <li><a href="tech.html" class="active">Технології</a></li>
+                    <li><a href="project.html">Моя Робота</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 style="text-align: center;">Архітектура та Принципи GPU</h1>
+        
+        <article class="glass-panel">
+            <h2>CPU проти GPU: Філософія паралелізму</h2>
+            <p>Багато хто плутає центральний процесор (CPU) та графічний процесор (GPU), але вони побудовані за зовсім різними принципами. CPU — це "мозок" комп'ютера, який має невелику кількість дуже потужних ядер (зазвичай від 4 до 24). Він ідеально підходить для виконання послідовних задач, таких як запуск операційної системи, відкриття програм або логічні операції. CPU фокусується на мінімізації затримки (latency).</p>
+            
+            <div class="video-container">
+                <div class="video-ratio">
+                    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/clCPQo0-quo?si=LgFwd6nsmzwdvwpF" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <p>Натомість GPU створений для паралельних обчислень. Сучасна відеокарта, наприклад NVIDIA RTX 4090, має понад 16 000 невеликих ядер (CUDA-cores). Кожне з цих ядер слабше за ядро процесора, але разом вони можуть виконувати тисячі однакових математичних операцій одночасно. Це критично важливо для графіки, адже екран монітора складається з мільйонів пікселів, і колір кожного з них треба розрахувати одночасно 60, 144 або навіть 240 разів на секунду.</p>
+
+            <div class="tech-grid" style="margin-top: 30px;">
+                <div class="tech-card">
+                    <h3>CPU - Послідовна обробка</h3>
+                    <div class="tech-specs">
+                        <ul>
+                            <li><span class="spec-label">Ядра</span><span class="spec-value">4-24</span></li>
+                            <li><span class="spec-label">Частота</span><span class="spec-value">До 5.8 ГГц</span></li>
+                            <li><span class="spec-label">Кеш</span><span class="spec-value">32-128 МБ</span></li>
+                            <li><span class="spec-label">Призначення</span><span class="spec-value">Загальні задачі</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <h3>GPU - Паралельна обробка</h3>
+                    <div class="tech-specs">
+                        <ul>
+                            <li><span class="spec-label">Ядра</span><span class="spec-value">До 16,384</span></li>
+                            <li><span class="spec-label">Частота</span><span class="spec-value">1.5-2.5 ГГц</span></li>
+                            <li><span class="spec-label">Пам'ять</span><span class="spec-value">До 24 ГБ GDDR6X</span></li>
+                            <li><span class="spec-label">Призначення</span><span class="spec-value">Графіка, AI, обчислення</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="glass-panel">
+            <h2>Архітектура сучасного GPU</h2>
+            <p>Сучасний графічний процесор — це складна система з кількох ключових компонентів, кожен з яких відповідає за конкретні задачі.</p>
+            
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3><i class="fas fa-microchip"></i> CUDA/Stream Cores</h3>
+                    <p>Основні обчислювальні блоки GPU. Виконують математичні операції з floating-point числами. Чим більше ядер, тим вища продуктивність у рендерингу та обчисленнях.</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3><i class="fas fa-bolt"></i> RT Cores</h3>
+                    <p>Спеціалізовані блоки для трасування променів (Ray Tracing). Обробляють перетини променів з геометрією сцени, прискорюючи реалістичне освітлення у 10-20 разів.</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3><i class="fas fa-brain"></i> Tensor Cores</h3>
+                    <p>Ядра для AI-обчислень. Використовуються в технологіях DLSS для масштабування зображення та генерації кадрів через нейромережі. Також критичні для тренування AI-моделей.</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3><i class="fas fa-image"></i> Texture Units (TMU)</h3>
+                    <p>Відповідають за вибірку та фільтрацію текстур. Забезпечують якісне накладання текстур на 3D-об'єкти з мінімальними артефактами.</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3><i class="fas fa-palette"></i> Render Output Units (ROP)</h3>
+                    <p>Фінальний етап рендерингу. Записують піксельні дані в буфер кадру, обробляють anti-aliasing та змішування кольорів.</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3><i class="fas fa-memory"></i> Memory Controller</h3>
+                    <p>Керує доступом до відеопам'яті (VRAM). Широка шина пам'яті (256-384 біт) забезпечує високу пропускну здатність для роботи з великими текстурами.</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="glass-panel">
+            <h2>Відеопам'ять (VRAM): Швидкість критична</h2>
+            <img src="assets/img/cpu-vs-gpu.jpg" alt="CPU vs GPU" style="margin: 20px auto;">
+            
+            <p>Відеокарта має власну оперативну пам'ять, яка називається VRAM. Вона набагато швидша за звичайну RAM у комп'ютері. Це необхідно, щоб швидко завантажувати гігабайти текстур високої роздільної здатності. Найпоширеніший стандарт сьогодні — GDDR6 та GDDR6X.</p>
+            
+            <div class="tech-specs">
+                <ul>
+                    <li><span class="spec-label">GDDR5</span><span class="spec-value">До 8 Гбіт/с на контакт</span></li>
+                    <li><span class="spec-label">GDDR6</span><span class="spec-value">До 16 Гбіт/с на контакт</span></li>
+                    <li><span class="spec-label">GDDR6X</span><span class="spec-value">До 21 Гбіт/с на контакт</span></li>
+                    <li><span class="spec-label">HBM2e (High-End)</span><span class="spec-value">До 460 ГБ/с пропускна здатність</span></li>
+                </ul>
+            </div>
+            
+            <p style="margin-top: 20px;">Ширина шини пам'яті (наприклад, 128-біт, 256-біт або 384-біт) визначає, як багато даних може пройти за один такт. Це можна порівняти з шириною автостради: чим ширша дорога, тим більше машин (даних) проїде за годину. Навіть найшвидший чіп не зможе працювати на повну силу, якщо шина пам'яті занадто вузька ("пляшкове горлечко").</p>
+            
+            <p><strong>Приклад:</strong> RTX 4090 має 384-бітну шину та 24 ГБ GDDR6X пам'яті з пропускною здатністю 1008 ГБ/с. Це дозволяє обробляти 8K текстури без затримок.</p>
+        </article>
+
+        <article class="glass-panel">
+            <h2>Ray Tracing: Фізично точне освітлення</h2>
+            <p>Трасування променів — це "Святий Грааль" комп'ютерної графіки. У класичному рендерингу (растеризації) об'єкти малюються пласкими шарами, а освітлення є лише імітацією. Трасування променів працює інакше: воно відстежує шлях віртуального променя світла від "очей" гравця до об'єктів у сцені, точно моделюючи фізичні закони відбиття та заломлення.</p>
+            
+            <img src="assets/img/raytracing-diagram.jpg" alt="Ray Tracing" style="margin: 20px auto;">
+            
+            <p>Коли промінь влучає в об'єкт, алгоритм розраховує, куди він відіб'ється далі, чи пройде крізь скло, чи створить тінь. Це вимагає мільярдів обчислень на секунду. Для цього сучасні GPU мають спеціальні апаратні блоки — RT Cores. Без них продуктивність в іграх з трасуванням падала б до неприйнятних значень.</p>
+
+            <h3 style="margin-top: 30px;">Етапи Ray Tracing</h3>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3><i class="fas fa-camera"></i> Primary Rays</h3>
+                    <p>Промені випускаються з камери через кожен піксель екрана. Визначають, який об'єкт видимий у кожній точці.</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3><i class="fas fa-moon"></i> Shadow Rays</h3>
+                    <p>Від точки перетину до джерела світла. Якщо промінь перекритий — піксель у тіні.</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3><i class="fas fa-mirror"></i> Reflection Rays</h3>
+                    <p>Відбиті промені від дзеркальних поверхонь. Створюють реалістичні відображення.</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3><i class="fas fa-glass-water"></i> Refraction Rays</h3>
+                    <p>Промені, що проходять крізь прозорі об'єкти (скло, вода). Моделюють заломлення світла.</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 20px;"><strong>Продуктивність:</strong> RTX 4090 може обробляти до 191 TFLOPS у Ray Tracing операціях, що в 16 разів більше, ніж RTX 2080 Ti першого покоління.</p>
+        </article>
+
+        <article class="glass-panel">
+            <h2>AI та DLSS: Коли нейромережі малюють графіку</h2>
+            <p>Сучасні відеокарти навчилися "домислювати" картинку. Технологія DLSS (Deep Learning Super Sampling) від NVIDIA використовує тензорні ядра (Tensor Cores) для масштабування зображення. Відеокарта рендерить гру в низькій роздільній здатності (наприклад, 1080p), що дає високий FPS, а потім нейромережа збільшує зображення до 4K.</p>
+            
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>DLSS 1.0 (2018)</h3>
+                    <p>Перше покоління. Працювало лише в деяких іграх, іноді створювало розмиття. Тренувалося окремо для кожної гри.</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>DLSS 2.0 (2020)</h3>
+                    <p>Універсальна модель для всіх ігор. Різке покращення якості, майже не відрізнити від native роздільності. Підтримка багатьох режимів.</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>DLSS 3.0 (2022)</h3>
+                    <p>Frame Generation — AI генерує проміжні кадри. RTX 4090 може показувати 200+ FPS замість 100 FPS без втрати якості.</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>DLSS 3.5 (2023)</h3>
+                    <p>Ray Reconstruction — AI покращує якість Ray Tracing, усуваючи шум та артефакти освітлення.</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 20px;">Нейромережа тренується на суперкомп'ютерах, аналізуючи мільйони ідеальних кадрів. Отриманий результат часто виглядає краще, ніж "чесні" 4K, тому що AI вміє згладжувати кути та відновлювати дрібні деталі.</p>
+            
+            <h3 style="margin-top: 30px;">Конкуренти</h3>
+            <div class="tech-specs">
+                <ul>
+                    <li><span class="spec-label">AMD FSR 3</span><span class="spec-value">Відкритий стандарт, без AI</span></li>
+                    <li><span class="spec-label">Intel XeSS</span><span class="spec-value">AI-масштабування для Arc GPU</span></li>
+                    <li><span class="spec-label">Консолі</span><span class="spec-value">Checkerboard rendering, TSR</span></li>
+                </ul>
+            </div>
+        </article>
+
+        <article class="glass-panel">
+            <h2>Шейдери: Програмовані ефекти</h2>
+            <p>Шейдери — це невеликі програми, які виконуються на GPU для кожного вершини або пікселя. Вони дозволяють створювати складні візуальні ефекти.</p>
+            
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>Vertex Shaders</h3>
+                    <p>Обробляють вершини 3D-моделей. Відповідають за трансформацію, анімацію скелетів, хвилі на воді.</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>Pixel/Fragment Shaders</h3>
+                    <p>Розраховують колір кожного пікселя. Освітлення, тіні, туман, постпроцесинг ефекти — все це робота піксельних шейдерів.</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>Geometry Shaders</h3>
+                    <p>Можуть створювати або видаляти геометрію на льоту. Використовуються для ефектів часток, трави, шерсті.</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>Compute Shaders</h3>
+                    <p>Загальні обчислення на GPU. Фізика, симуляції рідини, постобробка зображень, AI-інференс.</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="glass-panel">
+            <h2>Сучасні API: DirectX, Vulkan, Metal</h2>
+            <p>Графічні API — це міст між вашою грою та залізом відеокарти. Вони визначають, як розробники можуть спілкуватися з GPU.</p>
+            
+            <div class="tech-specs">
+                <ul>
+                    <li><span class="spec-label">DirectX 12 Ultimate</span><span class="spec-value">Windows, Xbox (Ray Tracing, Mesh Shaders)</span></li>
+                    <li><span class="spec-label">Vulkan 1.3</span><span class="spec-value">Кросплатформний, низькорівневий</span></li>
+                    <li><span class="spec-label">Metal 3</span><span class="spec-value">Apple (macOS, iOS)</span></li>
+                    <li><span class="spec-label">OpenGL</span><span class="spec-value">Застарілий, але широко підтримуваний</span></li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 20px;"><strong>Тренд:</strong> Сучасні API дають розробникам прямий контроль над залізом, що дозволяє краще оптимізувати продуктивність, але вимагає більше експертизи.</p>
+        </article>
+
+        <article class="glass-panel">
+            <h2>Майбутнє GPU технологій</h2>
+            <p>Індустрія не стоїть на місці. Ось що чекає на нас у найближчі роки:</p>
+            
+            <ul style="color: #ccc; padding-left: 20px; line-height: 2;">
+                <li><strong>Path Tracing:</strong> Повністю фізично точний рендеринг в реальному часі</li>
+                <li><strong>AI Frame Generation 2.0:</strong> Генерація 3-4 кадрів на кожен рендерний</li>
+                <li><strong>Neural Rendering:</strong> GPU "малює" графіку через нейромережі замість традиційного рендерингу</li>
+                <li><strong>Chiplet архітектура:</strong> Модульні GPU з кількох окремих чіпів</li>
+                <li><strong>Квантові обчислення:</strong> Інтеграція квантових прискорювачів для AI</li>
+            </ul>
+
+            <p style="margin-top: 20px;">Графічні процесори перестали бути просто "картинкамалювачами". Сьогодні це універсальні обчислювальні монстри, які рухають вперед AI, науку, медицину та індустрію розваг.</p>
+        </article>
+    </div>
+
+    <footer>
+        <div class="footer-glass">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>GPU<span style="color: #10b981;">HUB</span></h3>
+                    <p>Інформаційний ресурс про історію та розвиток графічних процесорів. Технології, архітектура та майбутнє GPU.</p>
+                    <p style="margin-top: 10px; font-size: 0.85rem; color: #666;">© 2026 GPU HUB. Всі права захищені.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Навігація</h4>
+                    <ul>
+                        <li><a href="index.html">Головна</a></li>
+                        <li><a href="history.html">Історія</a></li>
+                        <li><a href="tech.html">Технології</a></li>
+                        <li><a href="project.html">Моя Робота</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Контакти</h4>
+                    <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 10px;">Зв'яжіться зі мною:</p>
+                    <div class="social-icons">
+                        <a href="https://github.com" target="_blank" title="GitHub">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" title="LinkedIn">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                        <a href="mailto:contact@gpuhub.com" title="Email">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" title="Twitter">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="back-to-top" title="Вгору">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
