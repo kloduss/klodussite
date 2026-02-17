@@ -113,5 +113,4 @@ GPU HUB - це сучасний веб-сайт, присвячений істо
 ## GitHub Pages
 
 Сайт опубліковано на GitHub Pages:
-**https://kloduss.github.io/klodussite/**
-
+**[Посилання буде додано після публікації]**
